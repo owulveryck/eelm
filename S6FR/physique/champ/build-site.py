@@ -15,7 +15,7 @@ KJS  = os.path.join(VEND, "katex.min.js")
 KATEX = bool(shutil.which("node")) and os.path.exists(KCSS) and os.path.exists(KJS)
 # identifiant YouTube de la vidéo du chapitre (vidéo non répertoriée) ; "" = pas de page vidéo.
 # C'est la seule ressource externe de la page : check-site.py la tolère explicitement.
-VIDEO_YT = ""
+VIDEO_YT = "OgbOmfchPxk"
 
 # ---------------------------------------------------------------- markdown -> html
 def pandoc(md):
