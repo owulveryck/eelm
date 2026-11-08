@@ -23,6 +23,16 @@ import gtts, script                                             # noqa: E402
 VOIX = getattr(script, "VOIX", "fr-FR-Chirp3-HD-Charon")
 RATE = getattr(script, "RATE", 0.92)
 
+# La voix Chirp3 marque un silence de près d'une demi-seconde sur une apostrophe
+# ordinaire : « l'électrode » est lu « L … électrode ». La même apostrophe en
+# lettre modificative (U+02BC) est lue sans coupure. On ne substitue que dans le
+# texte envoyé à la synthèse ; script.py et les sous-titres gardent la ponctuation
+# correcte. Mesuré avec ffmpeg silencedetect avant et après.
+APOS = "\u02bc"
+
+def prononcable(t):
+    return t.replace("'", APOS).replace("\u2019", APOS)
+
 def duree(p):
     r = subprocess.run(["ffprobe", "-v", "0", "-show_entries", "format=duration",
                         "-of", "csv=p=0", p], capture_output=True, text=True)
@@ -35,7 +45,7 @@ for si, (sid, titre, phrases) in enumerate(script.SCENES):
         if not os.path.exists(mp3):
             for essai in range(4):
                 try:
-                    gtts.synth(texte, mp3, voix=VOIX, rate=RATE)
+                    gtts.synth(prononcable(texte), mp3, voix=VOIX, rate=RATE)
                     break
                 except SystemExit as e:
                     if essai == 3:

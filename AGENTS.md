@@ -269,6 +269,16 @@ python3 outils/video/montage.py  $NIV/$MAT/$CHAP/video
   ordinaires est illisible, la même composée par LaTeX se lit immédiatement.
 - **Rien n'est écrit en toutes lettres dans la narration qui ne soit pas prononçable** : « dix
   puissance moins quinze », pas « 10⁻¹⁵ ». Le texte de `script.py` sert aussi de sous-titres.
+- **L'apostrophe coupe la voix.** Avec une apostrophe ordinaire (`'` ou `’`), la voix Chirp3
+  marque un silence d'environ une demi-seconde : « l'électrode » est lu « L … électrode ».
+  `synthese.py` remplace donc l'apostrophe par la lettre modificative `ʼ` (U+02BC) **dans le seul
+  texte envoyé à la synthèse** ; `script.py` et les sous-titres gardent la ponctuation correcte.
+  Se mesure sans écouter : `ffmpeg -i x.mp3 -af silencedetect=noise=-38dB:d=0.12 -f null -`.
+- **Les numéros de plan ne s'écrivent pas à la main** : `scenes.py` lit le rang de chaque scène
+  dans `script.py`, donc insérer une scène au milieu ne demande de renuméroter nulle part.
+- **Chaque exemple montre la situation**, pas seulement le calcul : `exemple(..., fig=...)` loge un
+  dessin à gauche et le calcul à droite. Une sphère chargée se voit — ses charges en périphérie,
+  la charge équivalente au centre — sinon l'élève lit une formule sans savoir de quoi elle parle.
 - **Un plan fixe ne coûte qu'une image** : `montage.py` compare les 36 images d'un plan et, si
   elles sont identiques, n'en rend qu'une. Garder les animations là où elles expliquent quelque
   chose.

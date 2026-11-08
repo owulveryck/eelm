@@ -122,7 +122,7 @@ def head(c, titre, numero=None, total=None):
     c.rect(0, 0, W, 112, fill="#ffffff")
     c.line(0, 112, W, 112, col=PALE, sw=4, cap="butt")
     c.txt(70, 56, "Champ électrique", size=27, col=MUT, anchor="start")
-    c.txt(70, 90, "Physique S6 · École européenne Jacques Delors", size=20, col=SOFT, anchor="start")
+    c.txt(70, 90, "Olivier Wulveryck · Creative Commons", size=20, col=SOFT, anchor="start")
     c.txt(W - 70, 74, titre, size=40, col=INK, anchor="end", bold=True)
     if numero is not None:
         c.rect(0, H - 8, W, 8, fill=PALE)

@@ -15,7 +15,7 @@ KJS  = os.path.join(VEND, "katex.min.js")
 KATEX = bool(shutil.which("node")) and os.path.exists(KCSS) and os.path.exists(KJS)
 # identifiant YouTube de la vidéo du chapitre (vidéo non répertoriée) ; "" = pas de page vidéo.
 # C'est la seule ressource externe de la page : check-site.py la tolère explicitement.
-VIDEO_YT = "OgbOmfchPxk"
+VIDEO_YT = "CNx0pFLTBPM"
 
 # ---------------------------------------------------------------- markdown -> html
 def pandoc(md):
@@ -220,9 +220,9 @@ add("accueil", "Pour commencer", "Accueil", H(intro))
 if VIDEO_YT:
     add("video", "Pour commencer", "La vidéo du chapitre", H("""## La vidéo du chapitre
 
-> **TL;DR.** Vingt minutes qui reprennent tout le chapitre dans l'ordre, avec un exemple chiffré
-> résolu après chaque notion. Fil directeur : la gouttelette d'encre d'une imprimante à jet
-> d'encre, posée en énigme au début et calculée entièrement à la fin.
+> **TL;DR.** Vingt-trois minutes qui reprennent tout le chapitre dans l'ordre, avec un exemple
+> chiffré résolu après chaque notion, schéma à l'appui. Fil directeur : la gouttelette d'encre
+> d'une imprimante à jet d'encre, posée en énigme au début et calculée entièrement à la fin.
 
 <div class="ytbox"><iframe src="https://www.youtube-nocookie.com/embed/%s" title="Champ électrique — cours complet" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
 

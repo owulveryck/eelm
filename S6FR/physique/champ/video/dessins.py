@@ -33,7 +33,7 @@ def sc_titre(c, pi, t):
             c.charge(x, y, 1 if i % 2 else -1, r=17, op=0.16)
     c.txt(CX, 430, "Champ électrique", size=132, col=INK, bold=True)
     c.rect(CX - 300, 470, 600, 5, fill=OR)
-    c.txt(CX, 540, "Physique S6 · École européenne Jacques Delors", size=36, col=MUT)
+    c.txt(CX, 540, "Olivier Wulveryck · Creative Commons", size=36, col=MUT)
     if pi >= 1:
         c.txt(CX, 680, "Comment deux objets peuvent-ils s’attirer", size=46, col=INK)
         c.txt(CX, 740, "sans se toucher ?", size=46, col=OR, bold=True)

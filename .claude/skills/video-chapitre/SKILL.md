@@ -43,6 +43,8 @@ SCENES = [("identifiant", "Titre du bandeau", ["Phrase un.", "Phrase deux."])]
 ```
 
 - Tout s'écrit **prononçable** : « dix puissance moins quinze coulombs », jamais « 10⁻¹⁵ C ».
+- Les apostrophes s'écrivent normalement : `synthese.py` les convertit en `ʼ` (U+02BC) avant
+  l'envoi, sans quoi la voix Chirp3 coupe une demi-seconde à chaque élision. Ne pas défaire ça.
 - Des phrases courtes. Une idée par phrase, puisqu'une phrase est un plan.
 - Viser 15 à 25 minutes ; le découpage en scènes doit rester lisible dans le sommaire mental de
   l'élève (une notion, un exemple, une notion…).
@@ -62,9 +64,13 @@ def s01(c, pi, t):
 SCENES = {"identifiant": s01}
 ```
 
-`pi` = indice de la phrase en cours dans la scène, `t` = phase d'animation entre 0 et 1.
+`pi` = indice de la phrase en cours dans la scène, `t` = phase d'animation entre 0 et 1. Le
+troisième argument de `head` est l'**identifiant** de la scène : son rang et le nombre total de
+plans se lisent dans `script.py`, il n'y a donc jamais de numéro à mettre à jour à la main.
 
 - **Toute formule passe par `tex.put`.** Jamais `c.txt("E = U/d")`.
+- **Un exemple se dessine autant qu'il se calcule** : passer `fig=` à `exemple()` met la situation
+  à gauche et le calcul à droite. Un exemple qui n'est qu'une suite de lignes est raté.
 - Le dessin doit rester lisible **à l'arrêt** sur n'importe quelle image.
 - Animer seulement ce qui explique quelque chose (un champ qui s'établit, une charge qui dévie).
   Un plan fixe ne coûte qu'une image au rendu, un plan animé en coûte trente-six.
