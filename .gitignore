@@ -1,0 +1,10 @@
+# ouvrages sous copyright : ne jamais publier
+*.pdf
+*.crdownload
+*.epub
+*.djvu
+
+# divers
+.DS_Store
+node_modules/
+__pycache__/
