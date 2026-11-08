@@ -13,6 +13,9 @@ KCSS = os.path.join(VEND, "katex.inline.css")
 KJS  = os.path.join(VEND, "katex.min.js")
 # KaTeX rend les formules exactement comme LaTeX ; sans node ni vendor/, on retombe sur MathML
 KATEX = bool(shutil.which("node")) and os.path.exists(KCSS) and os.path.exists(KJS)
+# identifiant YouTube de la vidéo du chapitre (vidéo non répertoriée) ; "" = pas de page vidéo.
+# C'est la seule ressource externe de la page : check-site.py la tolère explicitement.
+VIDEO_YT = ""
 
 # ---------------------------------------------------------------- markdown -> html
 def pandoc(md):
@@ -212,6 +215,28 @@ intro += """
 > - Tu bloques sur une formule → le **Formulaire** donne la relation, et le **lexique** (A.11) donne le sens de chaque symbole.
 """
 add("accueil", "Pour commencer", "Accueil", H(intro))
+
+# ---- la vidéo du chapitre (hébergée sur YouTube, non répertoriée)
+if VIDEO_YT:
+    add("video", "Pour commencer", "La vidéo du chapitre", H("""## La vidéo du chapitre
+
+> **TL;DR.** Vingt minutes qui reprennent tout le chapitre dans l'ordre, avec un exemple chiffré
+> résolu après chaque notion. Fil directeur : la gouttelette d'encre d'une imprimante à jet
+> d'encre, posée en énigme au début et calculée entièrement à la fin.
+
+<div class="ytbox"><iframe src="https://www.youtube-nocookie.com/embed/%s" title="Champ électrique — cours complet" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+
+Les sous-titres français sont disponibles dans le lecteur. La vidéo ne remplace pas les pages :
+elle donne le fil, les pages donnent le détail et les exercices.
+
+> **À retenir pour les exercices**
+>
+> - La vidéo suit exactement l'ordre du menu de gauche : charge, loi de Coulomb, vecteur, champ,
+>   lignes de champ, potentiel, plaques, énergie.
+> - Les six exemples chiffrés qu'elle résout sont les six situations types du chapitre ; savoir les
+>   refaire seul suffit à traiter la plupart des exercices.
+> - La méthode en cinq étapes présentée à la fin est la même que sur la page **Méthode**.
+""" % VIDEO_YT))
 
 # ---- parties de cours (A, B, E, F) : une page par ## (ou par ### s'il n'y a qu'un ##)
 def add_partie(key, group, skip=(), kind="cours"):

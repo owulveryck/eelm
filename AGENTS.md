@@ -38,6 +38,12 @@ Trois règles qui expliquent tous les choix techniques :
 ├── site-template.html            le gabarit (CSS + navigation)
 ├── figures/*.svg                 les figures, dont les animées
 ├── vendor/                       katex.min.js + katex.inline.css (polices en base64)
+├── video/                        la vidéo du chapitre (cf. §8)
+│   ├── script.py                 le texte lu, phrase par phrase
+│   ├── scenes.py                 un dessin animé par phrase
+│   ├── dessins.py                les dessins de base réutilisés
+│   └── build/                    travail intermédiaire — non versionné
+├── cours-<chapitre>.mp4          la vidéo produite — non versionnée (hébergée sur YouTube)
 ├── index.html, figures.html      générés par build-index.py
 └── assets/site.css               (à la racine du dépôt) CSS des pages d'index
 ```
@@ -54,6 +60,9 @@ française). `build-index.py` balaie ces trois niveaux de répertoires et régé
 | `node` | rendu KaTeX au build | repli automatique sur MathML (rendu inférieur) |
 | `inkscape` | rendre un SVG en PNG pour **le regarder** | on ne peut plus vérifier les figures |
 | `pdftotext`, `pdftoppm` (poppler) | extraire le manuel source | pas d'adaptation d'exercices |
+| `ffmpeg`, `ffprobe` | montage de la vidéo | pas de vidéo |
+| `latex` + `dvisvgm` (TeX Live) | composer les formules de la vidéo | pas de vidéo |
+| `gcloud` (ADC) | synthèse vocale Google Cloud | pas de bande son |
 
 **Le manuel est un prérequis à installer à part.** *Advanced Physics for You* (K. Johnson,
 S. Hewett, S. Holt, J. Miller, Oxford University Press, 2ᵉ éd., 2015) est sous copyright : il
@@ -172,11 +181,131 @@ python3 build-index.py
 python3 check-site.py
 ```
 
+Pour la vidéo du chapitre, voir §8.
+
 Dans `build-site.py`, les points à adapter pour un nouveau chapitre : le nom du `.md` et du `.html`
 en tête de fichier, le titre dans `site-template.html` (`<header id="top">`), `FIGMAP`,
 `EXO_TLDR`, `SOL_RETENIR`, et les noms de parties s'ils diffèrent.
 
-## 8. Avant de pousser
+## 8. La vidéo du chapitre
+
+Le site a une vidéo d'environ vingt minutes, non référencée sur YouTube et intégrée dans la page
+d'accueil du chapitre. Elle est fabriquée entièrement en ligne de commande : **aucun montage à la
+main**, tout est reproductible depuis les sources.
+
+### Le principe
+
+Une **phrase = un plan**. On écrit d'abord le texte parlé, puis le dessin qui l'accompagne ; la
+durée de chaque plan est celle du fichier audio correspondant, donc l'image et la voix ne peuvent
+pas se désynchroniser. La chaîne complète :
+
+```
+script.py  ──▶ synthese.py ──▶ build/audio/*.mp3 + build/narration.json
+                                        │
+scenes.py  ──▶ montage.py  ◀────────────┘
+                  │  SVG (1920×1080) ─ inkscape ─▶ PNG ─ ffmpeg ─▶ un segment par plan
+                  └─▶ concaténation + bande son + sous-titres ─▶ cours-<chapitre>.mp4
+```
+
+Le moteur est dans `outils/video/` et ne dépend pas du chapitre :
+
+| Fichier | Rôle |
+|---|---|
+| `canvas.py` | la feuille 1920×1080 et les primitives (`rect`, `arrow`, `charge`, `card`, `txt`…), la palette, le bandeau de titre |
+| `tex.py` | une formule LaTeX → du SVG vectoriel (`latex` → `dvisvgm`), mis en cache et placé à la bonne échelle |
+| `gtts.py` | synthèse vocale Google Cloud en REST, authentifiée par les identifiants ADC de `gcloud` |
+| `synthese.py` | lit `script.py`, produit un mp3 par phrase et le manifeste des durées |
+| `montage.py` | lit `scenes.py` + le manifeste, rend les images, assemble la vidéo, écrit les sous-titres |
+
+### Écrire la vidéo d'un nouveau chapitre
+
+```bash
+NIV=S6FR MAT=physique CHAP=induction
+mkdir -p $NIV/$MAT/$CHAP/video
+# s'inspirer de S6FR/physique/champ/video/{script.py,scenes.py,dessins.py}
+```
+
+`script.py` déclare le nom du fichier produit, la voix, et la liste des scènes :
+
+```python
+SORTIE = "cours-induction.mp4"
+VOIX = "fr-FR-Chirp3-HD-Charon"      # voix masculine posée, la plus naturelle en français
+RATE = 0.92                          # un peu plus lent que la normale : c'est un cours
+SCENES = [
+ ("titre", "Induction", [
+   "Première phrase lue, qui donne le premier plan.",
+   "Deuxième phrase, deuxième plan.",
+ ]),
+]
+```
+
+`scenes.py` expose un dictionnaire `SCENES` qui associe chaque identifiant à une fonction
+`f(c, pi, t)` : `c` est la feuille, `pi` l'indice de la phrase en cours (le dessin se construit au
+fur et à mesure du texte), `t` la phase de l'animation entre 0 et 1.
+
+```python
+def s01(c, pi, t):
+    head(c, "Induction", 1)                     # bandeau + barre de progression
+    if pi >= 1:
+        c.arrow(400, 500, 900, 500, col=POS)
+    tex.put(c, r"\Phi = B\,S\,\cos\theta", 960, 700, pt=50)
+SCENES = {"titre": s01}
+```
+
+Puis :
+
+```bash
+gcloud services enable texttospeech.googleapis.com     # une fois par projet
+python3 outils/video/synthese.py $NIV/$MAT/$CHAP/video
+python3 outils/video/montage.py  $NIV/$MAT/$CHAP/video
+```
+
+### Les règles apprises en fabriquant la première
+
+- **Un exemple chiffré après chaque notion**, et un fil directeur unique qui traverse tout le
+  chapitre (ici la gouttelette d'une imprimante à jet d'encre, reprise six fois). C'est ce qui
+  distingue une vidéo d'un diaporama lu.
+- **Les formules passent par `tex.py`**, jamais par du texte : `E = U/d` écrit en caractères
+  ordinaires est illisible, la même composée par LaTeX se lit immédiatement.
+- **Rien n'est écrit en toutes lettres dans la narration qui ne soit pas prononçable** : « dix
+  puissance moins quinze », pas « 10⁻¹⁵ ». Le texte de `script.py` sert aussi de sous-titres.
+- **Un plan fixe ne coûte qu'une image** : `montage.py` compare les 36 images d'un plan et, si
+  elles sont identiques, n'en rend qu'une. Garder les animations là où elles expliquent quelque
+  chose.
+- **Les identifiants SVG des formules sont déterministes** (empreinte du contenu et de la
+  position). S'ils dépendaient d'un compteur, deux images successives d'un plan fixe différeraient
+  et tous les plans seraient rendus comme animés.
+- **La bande son est concaténée en PCM**, pas en mp3 : enchaînés tels quels, les remplissages
+  d'encodage des mp3 décalent la voix de plusieurs secondes sur vingt minutes. Le nombre d'images
+  de chaque segment est calculé sur le temps cumulé, pour que l'image et le son finissent ensemble
+  (vérifier : les durées des pistes dans `ffprobe` doivent coïncider à moins de 0,1 s).
+- **Relire les images avant de monter.** Pas de navigateur ici : on rend une image par plan en PNG
+  et on assemble des planches contact à regarder.
+
+```bash
+cd $NIV/$MAT/$CHAP/video && python3 -c "
+import sys; sys.path[:0]=['.','../../../../outils/video']
+import canvas, scenes, script, os
+os.makedirs('build/apercu', exist_ok=True)
+for i,(sid,t,ph) in enumerate(script.SCENES):
+    c = canvas.C(); scenes.SCENES[sid](c, len(ph)-1, 0.42)
+    open('build/apercu/%02d.svg'%i,'w').write(c.svg())
+"
+ls build/apercu/*.svg | xargs -P 8 -I{} inkscape --export-type=png --export-width=1280 {}
+montage build/apercu/*.png -tile 3x -geometry 640x+5+5 -background '#ddd' build/planche.png
+```
+
+Les collisions de texte, les flèches hors cadre et les étiquettes superposées ne se voient que
+comme ça. C'est l'étape la plus longue, et la seule qui fasse la différence.
+
+### Publier
+
+La vidéo (≈ 30 Mo) **n'est pas versionnée** : elle est envoyée sur YouTube en **non répertorié**,
+et la page d'accueil du chapitre l'intègre dans un lecteur `youtube-nocookie.com`. C'est la seule
+ressource externe tolérée par `check-site.py`. Les sous-titres `.srt` produits à côté du `.mp4`
+sont à charger dans YouTube (ils ne sont pas extraits automatiquement de la vidéo).
+
+## 9. Avant de pousser
 
 ```bash
 python3 check-site.py       # équilibre des balises, ids, liens, formules non rendues, PDF
@@ -192,7 +321,7 @@ git status --short
   (`check-site.py`) et celle des figures se fait en PNG via inkscape. Ne pas prétendre avoir
   « ouvert la page ».
 
-## 9. Droits
+## 10. Droits
 
 Voir [LICENSE](LICENSE). En résumé : le polycopié transcrit appartient à ses auteurs ; les exercices
 de la partie G sont *adaptés* du manuel (prérequis non versionné) et leur provenance est citée sur

@@ -7,7 +7,7 @@ Contrôle, pour chaque <niveau>/<matière>/<chapitre>/cours-*.html :
   - l'unicité des id et la validité des liens internes ;
   - l'absence de formule non rendue (du LaTeX brut visible) ;
   - la présence d'un TL;DR et d'un « à retenir » sur chaque page ;
-  - l'autonomie du fichier (aucune ressource externe) ;
+  - l'autonomie du fichier (aucune ressource externe, hors lecteur YouTube du chapitre) ;
 et, pour le dépôt entier, qu'aucun PDF n'est suivi par git.
 """
 import glob, os, re, subprocess, sys
@@ -77,7 +77,9 @@ def verifie(path):
     ext = re.findall(r'(?:src|href)="(https?:)?//[^"]+"', h)
     ext = [e for e in re.findall(r'(?:src|href)="([^"#]+)"', h)
            if e.startswith("http") or e.startswith("//")]
-    ext = [e for e in ext if "creativecommons.org" not in e and "github.com" not in e]
+    # tolérés : les liens de licence et de dépôt, et le seul lecteur vidéo de la page
+    tol = ("creativecommons.org", "github.com", "youtube-nocookie.com/embed/")
+    ext = [e for e in ext if not any(t in e for t in tol)]
     if ext:
         pb.append("ressources externes : %s" % ext[:3])
 

@@ -110,6 +110,12 @@ tbody tr:nth-child(even){background:#fcfaf6}
 .btn.ghost{background:#fff;color:#b4540e}
 .btn.ghost:hover{background:#fdf0e2}
 .solbtn{margin-top:28px}
+/* lecteur vidéo : 16/9 fluide */
+.ytbox{position:relative;width:100%;aspect-ratio:16/9;margin:18px 0 22px;
+  border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#000}
+.ytbox iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+@media print{.ytbox{display:none}}
+
 /* pied de page : navigation */
 #foot{max-width:860px;margin:36px auto 0;display:flex;align-items:center;gap:12px;
       border-top:1px solid var(--line);padding-top:16px}
