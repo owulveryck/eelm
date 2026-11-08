@@ -576,21 +576,79 @@ def s18(c, pi, t):
 # ------------------------------------------------------------------ 19. énergie
 def s19(c, pi, t):
     head(c, "Travail et énergie", "energie")
-    sous(c, "Relier l’électricité à l’énergie")
-    if pi >= 1:
-        tex.put(c, r"1\ \mathrm{V} = 1\ \mathrm{J\,C^{-1}}", CX, 330, pt=44, col=MUT)
-    c.card(430, 400, 1060, 170, col=OR)
-    tex.put(c, r"W = q\,\Delta V", CX, 485, pt=66)
-    if pi >= 2:
-        tex.put(c, r"W = 2 \times (50 - 35) = 30\ \mathrm{J}", CX, 650, pt=48, col=INK)
-        c.txt(CX, 715, "exemple 8 : une charge de 2 C qui passe de 50 V à 35 V", size=30, col=MUT)
-    if pi >= 3:
-        ox, oy, w = 420, 930, 1080
-        for i in range(3):
-            c.line(ox, oy - i * 56, ox + w, oy - i * 56, col=SOFT, sw=2, dash="8 8")
-        px = ox + 80 + (w - 160) * pingpong(t)
-        c.dot(px, oy - 112, 14, col=ACC)
-        c.txt(CX, oy + 60, "le long d’une équipotentielle : ΔV = 0, donc W = 0", size=34, col=ACC)
+
+    if pi <= 3:                      # ---------------- ce que « travail » veut dire
+        sous(c, "Le travail, c’est l’énergie échangée pendant un déplacement")
+        bx, bw, hy, by = 560, 800, 330, 640
+        c.rect(bx, hy, bw, 14, fill=POS); c.rect(bx, by, bw, 14, fill=NEG)
+        c.txt(bx - 34, hy + 18, "+", size=46, col=POS, anchor="end")
+        c.txt(bx - 34, by + 26, "–", size=52, col=NEG, anchor="end")
+        u = (t * 1.0) % 1.0
+        y = hy + 60 + (by - hy - 110) * ease(u)
+        c.charge(960, y, +1, r=30)
+        c.arrow(960, y + 44, 960, y + 116, col=POS, sw=6, head=22)
+        tex.put(c, r"\vec{F} = q\,\vec{E}", 1070, y + 80, pt=34, col=POS, anchor="ml")
+        if pi >= 1:
+            c.txt(CX, 742, "le champ pousse, la charge avance :", size=32, col=MUT)
+            c.txt(CX, 790, "l’énergie qu’il lui donne s’appelle le travail", size=36,
+                  col=INK, bold=True)
+        if pi >= 2:
+            tex.put(c, r"V = \frac{E_p}{q} \quad\Rightarrow\quad E_p = q\,V",
+                    CX, 876, pt=42, col=MUT)
+        if pi >= 3:
+            c.card(600, 934, 720, 100, col=OR)
+            tex.put(c, r"W = q\,\Delta V", CX, 984, pt=48)
+        return
+
+    if pi <= 7:                      # ---------------- l'exemple, et à quoi il sert
+        sous(c, "Un exemple, et ce qu’on en fait")
+        c.card(600, 250, 720, 96, col=OR)
+        tex.put(c, r"W = q\,\Delta V", CX, 298, pt=44)
+        ya, yb, xa, xb = 470, 700, 380, 1060
+        c.line(300, ya, 1180, ya, col=SOFT, sw=2, dash="9 9")
+        c.line(300, yb, 1180, yb, col=SOFT, sw=2, dash="9 9")
+        c.txt(290, ya + 10, "50 V", size=30, col=MUT, anchor="end")
+        c.txt(290, yb + 10, "35 V", size=30, col=MUT, anchor="end")
+        c.line(xa, ya, xb, yb, col=MUT, sw=4)                    # la « pente » de potentiel
+        c.dot(xa, ya, 13, col=INK); c.dot(xb, yb, 13, col=INK)
+        c.txt(xa - 16, ya - 28, "A", size=34, col=INK, it=True, anchor="end")
+        c.txt(xb + 20, yb + 46, "B", size=34, col=INK, it=True, anchor="start")
+        u = ease((t * 1.0) % 1.0)
+        c.charge(xa + (xb - xa) * u, ya + (yb - ya) * u, +1, r=26)
+        c.txt(xa + 40, ya + 118, "q = 2 C", size=30, col=POS, anchor="start")
+        if pi >= 5:
+            c.line(1230, ya, 1230, yb, col=NEG, sw=3)
+            c.line(1216, ya, 1244, ya, col=NEG, sw=3)
+            c.line(1216, yb, 1244, yb, col=NEG, sw=3)
+            tex.put(c, r"\Delta V = 35 - 50 = -15\ \mathrm{V}", 1270, 540,
+                    pt=36, col=NEG, anchor="ml")
+            c.txt(1270, 616, "chaque coulomb perd 15 J", size=30, col=MUT, anchor="start")
+        if pi >= 6:
+            c.card(560, 790, 800, 104, col=OR)
+            tex.put(c, r"W = 2 \times 15 = 30\ \mathrm{J}", CX, 842, pt=46)
+            c.txt(CX, 936, "ces 30 J sont passés dans le mouvement :", size=32, col=MUT)
+            c.txt(CX, 982, "la charge arrive avec 30 J d’énergie cinétique — plus vite",
+                  size=32, col=ACC)
+        if pi >= 7:
+            c.txt(CX, 1032, "c’est ce qui accélère la gouttelette d’encre, et l’électron dans un tube",
+                  size=30, col=INK)
+        return
+
+    sous(c, "Le cas où le travail est nul")   # ---------------- l'équipotentielle
+    ox, oy, w = 380, 820, 1160
+    for i in range(4):
+        c.line(ox, oy - i * 72, ox + w, oy - i * 72, col=SOFT, sw=2, dash="9 9")
+    c.txt(ox - 20, oy - 144 + 10, "équipotentielles", size=27, col=MUT, anchor="end")
+    px = ox + 90 + (w - 180) * pingpong(t)
+    c.charge(px, oy - 144, +1, r=26)
+    c.arrow(ox + 90, oy - 196, ox + w - 90, oy - 196, col=ACC, sw=4, head=18, dash="10 8")
+    tex.put(c, r"\Delta V = 0 \quad\Rightarrow\quad W = q \times 0 = 0",
+            CX, 400, pt=48, col=ACC)
+    c.txt(CX, 500, "aucune énergie échangée, quel que soit le chemin suivi", size=32, col=MUT)
+    if pi >= 9:
+        c.txt(CX, 960, "comme marcher à flanc de colline en suivant une courbe de niveau :",
+              size=32, col=MUT)
+        c.txt(CX, 1006, "on avance, mais ça ne coûte rien", size=34, col=INK, bold=True)
 
 # ------------------------------------------------------------------ 20-22. le fil directeur
 def s20(c, pi, t):
@@ -696,23 +754,29 @@ def s24(c, pi, t):
 def s25(c, pi, t):
     head(c, "Ce qu’il faut retenir", "final")
     sous(c, "Tout le chapitre tient dans cinq relations", y=200)
-    forms = [(r"F = k\,\frac{\lvert Q \rvert \lvert q \rvert}{r^{2}}", "la loi de Coulomb"),
+    forms = [(r"F = k\,\frac{\lvert Q \rvert \lvert q \rvert}{r^{2}}", "la loi de Coulomb",
+              "Q et q : les deux charges (C) · r : la distance entre elles (m) · k = 9,0 × 10⁹"),
              (r"E = \frac{F}{\lvert q \rvert} \qquad \vec{F} = q\,\vec{E}",
-              "le champ : force par unité de charge"),
-             (r"E = k\,\frac{\lvert Q \rvert}{r^{2}}", "le champ d’une charge ponctuelle"),
-             (r"E = \frac{U}{d}", "le champ uniforme entre deux plaques"),
-             (r"W = q\,\Delta V", "l’énergie échangée")]
+              "le champ : force par unité de charge",
+              "q : la charge qu’on pose (C) · F : la force qu’elle subit (N) · E en V m⁻¹"),
+             (r"E = k\,\frac{\lvert Q \rvert}{r^{2}}", "le champ d’une charge ponctuelle",
+              "Q : la charge qui crée le champ · r : la distance à cette charge"),
+             (r"E = \frac{U}{d}", "le champ uniforme entre deux plaques",
+              "U : la tension entre les plaques (V) · d : leur écartement (m)"),
+             (r"W = q\,\Delta V", "l’énergie échangée",
+              "q : la charge déplacée (C) · ΔV : la dénivelée de potentiel (V) · W en joules")]
     n = min(pi, 5) if pi >= 1 else 0
-    for i, (f, d) in enumerate(forms):
+    for i, (f, d, leg) in enumerate(forms):
         if i >= n:
             break
-        y = 290 + i * 132
+        y = 276 + i * 136
         actif = (i == n - 1)
-        c.card(300, y, 1320, 118, col=OR if actif else PALE, sw=4 if actif else 2)
-        tex.put(c, f, 640, y + 60, pt=40, maxw=560)
-        c.txt(1040, y + 72, d, size=29, col=MUT, anchor="start")
+        c.card(170, y, 1580, 122, col=OR if actif else PALE, sw=4 if actif else 2)
+        tex.put(c, f, 400, y + 62, pt=38, maxw=400)
+        c.txt(660, y + 52, d, size=28, col=INK, anchor="start")
+        c.txt(660, y + 92, leg, size=23, col=MUT, anchor="start")
     if pi >= 6:
-        c.txt(CX, 1020, "cinq relations, une méthode, et une gouttelette d’encre pour tout relier",
+        c.txt(CX, 1030, "cinq relations, une méthode, et une gouttelette d’encre pour tout relier",
               size=36, col=ACC)
 
 SCENES = {"potdef": s_potdef, "titre": s01, "enigme": s02, "charge": s03, "ex1": s04, "regles": s05,
