@@ -29,6 +29,8 @@ Le cours d'origine (partie **III** et suivantes) est un **résumé** : il donne 
 
 ## A.1. De quoi parle ce chapitre ?
 
+> **TL;DR.** Ce chapitre répond à une seule question : comment deux objets peuvent-ils se pousser ou s'attirer **sans se toucher** ? La réponse se fait en deux temps : la **charge** mesure à quel point un objet est électrisé, et toute charge **modifie l'espace** autour d'elle en y créant un **champ**.
+
 Tu as déjà vécu tout ça : le pull qui crépite quand on l'enlève, la règle en plastique frottée qui attire des petits bouts de papier, la petite décharge en touchant une poignée de porte, l'éclair pendant un orage. À chaque fois, deux objets agissent l'un sur l'autre **sans se toucher**.
 
 C'est exactement le problème que ce chapitre résout. La question est :
@@ -42,7 +44,15 @@ La réponse des physiciens tient en deux temps :
 
 Le champ, c'est donc l'intermédiaire : au lieu de dire « A tire sur B à distance » (ce qui est mystérieux), on dit « A crée un champ partout autour de lui, et B réagit au champ qui règne **là où B se trouve** » (ce qui est beaucoup plus facile à calculer).
 
+> **À retenir pour les exercices**
+>
+> - Ne pas confondre les deux grandeurs du chapitre : la **charge** $q$ est ce que *porte* l'objet ; le **champ** $\vec{E}$ est ce que la charge *fait* à l'espace autour d'elle.
+> - Le raisonnement est toujours le même, dans cet ordre : une charge source $Q$ crée un champ $\vec{E}$ → on pose une charge $q$ dedans → cette charge subit $\vec{F} = q\,\vec{E}$.
+> - « À distance » n'est alors plus mystérieux : $B$ ne réagit pas à $A$, il réagit au champ qui règne **là où il se trouve**.
+
 ## A.2. La charge électrique $q$ : la « quantité d'électricité »
+
+> **TL;DR.** D'où vient la charge (des électrons arrachés à un objet et donnés à un autre), comment on la mesure (le coulomb), pourquoi elle n'existe que par paquets indivisibles, et quels ordres de grandeur sont réalistes en électrostatique.
 
 ### Elle vient des atomes
 
@@ -113,7 +123,16 @@ Le coulomb est donc une **énorme** unité quand il s'agit d'électricité stati
 
 > **Notation du cours.** Quand deux charges interviennent, on note souvent **$Q$** celle qui *crée* le champ (la « source ») et **$q$** celle qu'on *pose dedans* pour voir ce qui lui arrive (la « charge d'essai »). C'est une convention de lecture, pas une différence de nature.
 
+> **À retenir pour les exercices**
+>
+> - $e = 1{,}60 \times 10^{-19}\ \mathrm{C}$ et $q = n\,e$ : pour passer d'un nombre d'électrons à une charge, et dans l'autre sens $n = q/e$.
+> - Perdre des électrons → **positif** ; en gagner → **négatif**. Aucune charge n'est créée, elle est **transférée** : les deux objets portent des charges opposées.
+> - En électrostatique on travaille en **nC** ($10^{-9}$ C) et en **µC** ($10^{-6}$ C) : convertir en coulombs **avant** tout calcul.
+> - **Conducteur** : les charges circulent et s'échappent vers la terre. **Isolant** : elles restent sur place, et c'est ce qui rend la charge *statique* possible.
+
 ## A.3. Les deux règles d'or
+
+> **TL;DR.** Qui attire qui, pourquoi les deux forces d'une paire ont toujours la **même valeur**, et pourquoi un objet chargé attire aussi un objet **neutre** — le cas dont les deux règles d'or ne parlent pas.
 
 ![Deux charges de même signe se repoussent ; deux charges de signes opposés s'attirent.](figures/21-attraction-repulsion.svg)
 
@@ -147,7 +166,16 @@ On peut aussi utiliser cet effet pour charger durablement deux conducteurs, sans
 
 > **Le point remarquable.** La règle n'a rien perdu ni rien gagné : elle a seulement *déplacé* des électrons à distance. Et les deux sphères portent des charges exactement opposées, puisqu'au départ l'ensemble était neutre.
 
+> **À retenir pour les exercices**
+>
+> - **Mêmes signes → répulsion ; signes opposés → attraction.**
+> - $\vec{F}_{A/B}$ et $\vec{F}_{B/A}$ ont la **même norme** et des sens opposés, même si une charge est mille fois plus grande que l'autre.
+> - Un corps chargé attire **toujours** un corps neutre (polarisation, puis le $1/r^{2}$ qui avantage ce qui est le plus proche) : d'une simple attraction on ne peut donc **pas** déduire le signe d'une charge.
+> - Charge par influence : deux conducteurs séparés dans le champ prennent des charges **exactement opposées**, et l'objet chargé, lui, n'a rien perdu.
+
 ## A.4. La loi de Coulomb : la force et la distance
+
+> **TL;DR.** La formule qui donne la **valeur** de la force entre deux charges, et surtout l'effet du $r^{2}$ : doubler la distance ne divise pas la force par 2, mais par 4.
 
 La valeur de la force entre deux charges ponctuelles vaut :
 
@@ -195,7 +223,16 @@ Même forme mathématique, deux différences : la gravitation **attire toujours*
 > Les charges sont de signes opposés : les deux forces sont **attractives**, dirigées l'une vers l'autre, et valent chacune $8{,}4 \times 10^{-5}$ N.
 > *(Remarque : une sphère chargée agit comme si toute sa charge était concentrée en son centre — à condition qu'elle ne soit pas trop près de l'autre.)*
 
+> **À retenir pour les exercices**
+>
+> - $F = k\,\dfrac{\lvert Q \rvert\,\lvert q \rvert}{r^{2}}$ avec $k \approx 9{,}0 \times 10^{9}\ \mathrm{N\,m^{2}\,C^{-2}}$ dans le vide **et dans l'air**.
+> - $r$ se compte en **mètres**, entre les centres, et il est **au carré** : $(2 \times 10^{-2})^{2} = 4 \times 10^{-4}$.
+> - Technique du rapport, qui évite tout calcul : distance $\times n$ → force $\div n^{2}$ ; une charge $\times n$ → force $\times n$.
+> - Même forme que la gravitation $F = G\,Mm/r^{2}$, avec deux différences : l'électricité peut **repousser**, et elle est incomparablement plus intense.
+
 ## A.5. Un vecteur, mode d'emploi
+
+> **TL;DR.** La différence entre $\vec{F}$ (une flèche) et $F$ (un nombre positif), à quoi sert le vecteur unitaire $\vec{u}$ des formules du cours, et les deux façons d'additionner des vecteurs.
 
 Dire « la force vaut 90 N » ne suffit pas : il faut savoir **vers où** elle pousse. C'est le rôle du **vecteur**, noté avec une flèche : $\vec{F}$.
 
@@ -238,9 +275,18 @@ $$\vec{E_1} \begin{pmatrix} x_1 \\ y_1 \end{pmatrix}
 
 Cette dernière racine, c'est simplement **Pythagore** : la longueur de la flèche à partir de ses deux côtés horizontal et vertical.
 
+> **À retenir pour les exercices**
+>
+> - Une **norme** ($F$, $E$) est **toujours positive** : c'est le vecteur qui porte le sens, jamais le nombre.
+> - $\vec{u}$ va **de la source $Q$ vers la charge $q$**. Le signe du produit $Q \cdot q$ fait tout le travail : positif → répulsion (sens de $\vec{u}$), négatif → attraction (sens opposé).
+> - Addition sûre : on additionne **coordonnée par coordonnée**, puis Pythagore $\lVert \vec{E} \rVert = \sqrt{E_x^{2} + E_y^{2}}$.
+> - Ne **jamais** additionner deux normes directement : $3$ et $4$ perpendiculaires donnent $5$, opposés donnent $1$.
+
 ---
 
 ## A.6. Qu'est-ce qu'un « champ » ?
+
+> **TL;DR.** Ce que les physiciens appellent un **champ** : une grandeur qui possède une valeur en chaque point de l'espace. Le champ électrique se lit comme une carte des vents, et la pesanteur en donne l'analogie exacte.
 
 En physique, un **champ**, c'est une grandeur qui possède une valeur **en chaque point de l'espace**.
 
@@ -267,7 +313,15 @@ L'analogie avec la pesanteur est la plus utile de tout le chapitre :
 
 > **L'idée clé.** Le champ **existe déjà**, même si on ne pose rien dedans. Le champ de pesanteur d'une salle de classe existe même quand personne ne saute. De la même façon, une charge $Q$ seule dans le vide a déjà un champ électrique tout autour d'elle ; la charge $q$ ne sert qu'à le *révéler*.
 
+> **À retenir pour les exercices**
+>
+> - $\vec{P} = m\,\vec{g}$ ↔ $\vec{F} = q\,\vec{E}$ : la charge joue exactement le rôle de la masse. Toute question sur $\vec{E}$ peut se reformuler sur $\vec{g}$.
+> - Le champ **existe sans la charge d'essai** : $q$ ne fait que le révéler. Retirer $q$ ne supprime pas $\vec{E}$.
+> - Champ **scalaire** = un nombre en chaque point (température, potentiel $V$) ; champ **vectoriel** = une flèche ($\vec{E}$, $\vec{g}$).
+
 ## A.7. Pourquoi diviser par $q$ ?
+
+> **TL;DR.** Pourquoi on définit le champ comme une force **par unité de charge** : c'est le seul moyen d'obtenir une grandeur qui décrive l'espace et non la charge qu'on y a posée. Et pourquoi $E$ se mesure aussi bien en N/C qu'en V/m.
 
 Si on mesure la force sur une charge d'essai, le résultat dépend de la charge choisie : prends une charge deux fois plus grande, tu obtiens une force deux fois plus grande. Ce n'est donc pas une bonne description de **l'espace lui-même**.
 
@@ -302,7 +356,16 @@ Quelques ordres de grandeur :
 | seuil de claquage de l'air sec (l'étincelle jaillit) | $3 \times 10^{6}\ \mathrm{V\,m^{-1}}$ |
 | à $10^{-10}\ \mathrm{m}$ d'un électron (dans un atome) | $\approx 10^{11}\ \mathrm{V\,m^{-1}}$ |
 
+> **À retenir pour les exercices**
+>
+> - $E = \dfrac{F_{el}}{\lvert q \rvert}$ et $\vec{F} = q\,\vec{E}$ : deux écritures de la même relation, à utiliser selon ce que donne l'énoncé.
+> - $1\ \mathrm{N\,C^{-1}} = 1\ \mathrm{V\,m^{-1}}$ : les deux unités sont **identiques**, on choisit celle du contexte.
+> - Sens : $q > 0$ → $\vec{F}$ dans le sens de $\vec{E}$ ; $q < 0$ (un électron) → sens **opposé**.
+> - Repères utiles : plaques de TP $\sim 10^{3}$ V/m, nuage d'orage $\sim 10^{4}$ V/m, claquage de l'air $3 \times 10^{6}$ V/m.
+
 ## A.8. Les lignes de champ : la carte du champ
+
+> **TL;DR.** Comment représenter un champ sans dessiner une flèche en chaque point, et comment **lire** une carte de lignes de champ. Les cinq règles ci-dessous sont celles qui tombent en contrôle.
 
 Dessiner une flèche en chaque point serait illisible. On trace donc des **lignes de champ** : des courbes qui suivent les flèches.
 
@@ -318,7 +381,17 @@ Règles de lecture, toutes utiles en contrôle :
 
 > **Peut-on voir un champ ?** Presque. On saupoudre des grains de semoule sur de l'huile de ricin, puis on plonge deux électrodes reliées à une haute tension (quelques kV) dans l'huile. Les grains, polarisés par le champ (même mécanisme qu'en A.3), s'orientent et s'alignent bout à bout : ils dessinent les lignes de champ. Avec deux plaques parallèles on obtient des lignes droites et régulièrement espacées ; avec une pointe et un anneau, un champ radial. C'est l'équivalent électrique de la limaille de fer autour d'un aimant.
 
+> **À retenir pour les exercices**
+>
+> - $\vec{E}$ est **tangent** à la ligne de champ en chaque point.
+> - Les lignes **sortent** des charges $\oplus$ et **entrent** dans les charges $\ominus$.
+> - Elles ne se **croisent jamais** — sinon le champ aurait deux sens au même endroit.
+> - Lignes **serrées** → champ **intense** ; lignes espacées → champ faible.
+> - Elles sont **perpendiculaires** à la surface d'un conducteur et aux équipotentielles.
+
 ## A.9. Potentiel $V$, tension $U$ : l'analogie de l'altitude
+
+> **TL;DR.** La partie la plus abstraite du chapitre, rendue simple par une seule analogie : le **potentiel** est une altitude, la **tension** une dénivelée, le **champ** une pente. Tout le reste en découle, y compris $E = U/d$ et $W = q\,\Delta V$.
 
 C'est la partie la plus abstraite du chapitre, et l'analogie du relief la rend simple.
 
@@ -407,7 +480,17 @@ Cela se lit comme une pente : « on descend de $U$ volts en parcourant $d$ mètr
 
 C'est pour cela qu'un petit condensateur avec des plaques très proches peut produire un champ énorme avec une pile ordinaire.
 
+> **À retenir pour les exercices**
+>
+> - $V = k\,\dfrac{Q}{r}$ (zéro à l'infini) : un **nombre** avec un signe, donc les potentiels de plusieurs charges s'additionnent **sans vecteurs**. $V$ décroît en $1/r$, $E$ en $1/r^{2}$ : ce ne sont pas les mêmes courbes.
+> - $U = V_A - V_B$ est une **différence** ; $W = q\,\Delta V$ donne l'énergie échangée. Le long d'une équipotentielle, $\Delta V = 0$ donc $W = 0$.
+> - $E = \dfrac{U}{d}$ entre deux plaques, et plus généralement $E = -\dfrac{\Delta V}{\Delta r}$ : le champ est la **pente** du potentiel et pointe vers les potentiels **décroissants**.
+> - Conducteur chargé : $E = 0$ à l'intérieur et $V$ y est constant ; à l'extérieur, tout se passe comme si la charge était **au centre**.
+> - $1\ \mathrm{V} = 1\ \mathrm{J\,C^{-1}}$ : un coulomb qui passe sous 1 volt échange 1 joule.
+
 ## A.10. Unités, préfixes et pièges de calcul
+
+> **TL;DR.** La liste de contrôle à passer **avant** d'appuyer sur la calculatrice : les préfixes, les conversions, et le piège du carré sur les puissances de 10 — l'erreur numéro un des copies.
 
 Avant tout calcul, **tout convertir dans les unités du Système International** : mètre, seconde, kilogramme, coulomb, volt.
 
@@ -428,7 +511,16 @@ $$10^{a} \times 10^{b} = 10^{a+b}
 
 Exemple typique du chapitre : $\left(2 \times 10^{-2}\right)^{2} = 4 \times 10^{-4}$ — **le carré porte aussi sur la puissance de 10**, c'est l'erreur n°1 des copies.
 
+> **À retenir pour les exercices**
+>
+> - Préfixes : n $= 10^{-9}$, µ $= 10^{-6}$, m $= 10^{-3}$, c $= 10^{-2}$, k $= 10^{3}$, M $= 10^{6}$.
+> - Tout en unités SI avant de calculer : **m**, **kg**, **s**, **C**, **V**. Des cm ou des nC ne se mettent jamais dans une formule.
+> - $(2 \times 10^{-2})^{2} = 4 \times 10^{-4}$ : le carré porte **aussi** sur la puissance de 10.
+> - $10^{a} \times 10^{b} = 10^{a+b}$, $\dfrac{10^{a}}{10^{b}} = 10^{a-b}$, $\left(10^{a}\right)^{2} = 10^{2a}$.
+
 ## A.11. Lexique des symboles du chapitre
+
+> **TL;DR.** Le tableau de tous les symboles du chapitre, avec leur unité et le piège qui va avec. C'est la page à garder ouverte pendant les exercices.
 
 | Symbole | Nom | Unité | Remarque |
 |---|---|---|---|
@@ -448,6 +540,12 @@ Exemple typique du chapitre : $\left(2 \times 10^{-2}\right)^{2} = 4 \times 10^{
 | $m$ | masse | kg | |
 | $g$ | intensité de la pesanteur | $\mathrm{N\,kg^{-1}}$ ou $\mathrm{m\,s^{-2}}$ | $9{,}81$ |
 
+> **À retenir pour les exercices**
+>
+> - $Q$ désigne la charge **source** (celle qui crée le champ), $q$ la charge **posée dedans** : c'est une convention de lecture, pas une différence de nature.
+> - Unités à ne pas mélanger : $q$ en C, $F$ en N, $E$ en V/m (ou N/C), $V$ et $U$ en V, $W$ en J.
+> - Constantes à connaître : $k \approx 9{,}0 \times 10^{9}$, $e = 1{,}60 \times 10^{-19}\ \mathrm{C}$, $g = 9{,}81\ \mathrm{N\,kg^{-1}}$.
+
 ---
 
 # Partie B — Le cours
@@ -455,6 +553,8 @@ Exemple typique du chapitre : $\left(2 \times 10^{-2}\right)^{2} = 4 \times 10^{
 ## III. Champ électrique — Résumé
 
 ### III.1. Définition du champ électrique $\vec{E}$ à partir de la force électrostatique $\vec{F_{el}}$
+
+> **TL;DR.** La ligne de cours la plus dense du chapitre : elle contient **deux** façons de calculer la même force — $\vec{F} = q\,\vec{E}$ quand on connaît le champ, la loi de Coulomb quand on connaît la charge source. En simplifiant par $q$, on obtient le champ lui-même.
 
 La force électrostatique $\vec{F_{el}}$ exercée par une charge $Q$ sur une charge $q$ placée dans un champ électrique $\vec{E}$ (la distance entre les deux charges est notée $r$) s'exprime :
 
@@ -477,7 +577,16 @@ $$q \times \vec{E} = k\,\frac{Q \times q}{r^{2}}\,\vec{u}
 
 > **En clair.** On a simplement **simplifié par $q$** des deux côtés. Et c'est tout l'intérêt de la manœuvre : dans le résultat, **$q$ a disparu**. Le champ créé par $Q$ ne dépend plus que de $Q$ et de l'endroit où on regarde ($r$) — plus du tout de la charge qu'on y pose. C'est bien une propriété de l'espace (voir A.7).
 
+> **À retenir pour les exercices**
+>
+> - $\vec{F_{el}} = q\,\vec{E} = k\,\dfrac{Q \cdot q}{r^{2}}\,\vec{u}$, et après simplification par $q$ : $\vec{E} = k\,\dfrac{Q}{r^{2}}\,\vec{u}$.
+> - $k = \dfrac{1}{4\pi\varepsilon_{0}\varepsilon_{r}} \approx 9{,}0 \times 10^{9}$ dans le vide et dans l'air ($\varepsilon_{r} \approx 1$) ; dans l'eau $\varepsilon_{r} = 80$, les forces sont 80 fois plus faibles.
+> - Choisir sa formule : le champ est donné (plaques, énoncé) → $\vec{F} = q\,\vec{E}$ ; la source et la distance sont données → Coulomb.
+> - Dans l'expression de $\vec{E}$, la charge d'essai **a disparu** : le champ ne dépend que de $Q$ et de $r$.
+
 ### III.2. Définition de l'intensité du champ électrique
+
+> **TL;DR.** La version « valeur » des formules : on oublie l'orientation et on ne manipule plus que des nombres positifs. Puis les deux géométries du chapitre : le champ **radial** d'une charge ponctuelle et le champ **uniforme** entre deux plaques.
 
 $$E = \left\lVert \vec{E} \right\rVert = \frac{\left\lVert \vec{F_{el}} \right\rVert}{\lvert q \rvert} = \frac{F_{el}}{\lvert q \rvert}$$
 
@@ -525,7 +634,16 @@ où $d$ est la distance séparant les deux plaques parallèles.
 > $\Delta V$ (lire « delta V ») signifie « différence de potentiel » : c'est exactement la tension $U$ qu'affiche le générateur.
 > Conséquence pratique : une charge placée entre les plaques subit **la même force** où qu'elle soit. C'est ce qui rend le calcul possible au niveau S6 — et c'est le dispositif utilisé par Thomson et par Millikan plus loin.
 
+> **À retenir pour les exercices**
+>
+> - $E = \dfrac{F_{el}}{\lvert q \rvert}$ : la force par unité de charge. Les barres de valeur absolue garantissent un résultat positif.
+> - Charge ponctuelle : $E(r) = k\,\dfrac{\lvert Q \rvert}{r^{2}}$, champ **radial**, centrifuge si $Q > 0$, centripète si $Q < 0$.
+> - Deux plaques : $E = \dfrac{U}{d}$, champ **uniforme**, perpendiculaire aux plaques, dirigé de $\oplus$ vers $\ominus$ — même valeur partout entre les plaques.
+> - Entre deux charges de **même signe** il existe un **point neutre** où les deux champs s'annulent.
+
 ### Superposition de champs issus de plusieurs charges ponctuelles
+
+> **TL;DR.** Ce qui se passe quand il y a plusieurs charges : chacune crée son champ **comme si les autres n'existaient pas**, et on additionne les flèches. Aucune charge n'en gêne une autre.
 
 En un point, le champ électrique résultant est la **somme** des champs radiaux générés par les différentes charges ponctuelles :
 
@@ -539,7 +657,16 @@ $$\vec{E} = \sum_{i} \vec{E_{i}} = \vec{E_{1}} + \vec{E_{2}} + \dots$$
 > Le principe est remarquablement simple : **chaque charge crée son champ comme si les autres n'existaient pas**, et on additionne les flèches. Aucune charge ne « gêne » les autres.
 > Attention : c'est une somme **de vecteurs**, pas de nombres. $3 + 4$ ne donne pas 7 ici : si les deux flèches sont perpendiculaires, la résultante vaut $\sqrt{3^2+4^2} = 5$ ; si elles sont opposées, elle vaut 1. En pratique, on additionne **coordonnée par coordonnée** (voir A.5), c'est la méthode qui ne trompe jamais.
 
+> **À retenir pour les exercices**
+>
+> - $\vec{E} = \sum_{i} \vec{E_{i}}$ : une somme **de vecteurs**, jamais de normes.
+> - Méthode qui ne trompe jamais : projeter chaque $\vec{E_{i}}$ sur $x$ et sur $y$, additionner coordonnée par coordonnée, puis Pythagore pour la norme.
+> - Cas fréquent, deux charges sur un même axe : champs de sens opposés → on **soustrait** ; de même sens → on **ajoute**.
+> - Le **point nul** est l'endroit où les contributions s'annulent exactement : il se cherche en écrivant $E_1 = E_2$ (exercices 9 et 13).
+
 ### Lignes de champ et surfaces équipotentielles
+
+> **TL;DR.** Le lien entre la carte des flèches et la carte des potentiels : les équipotentielles sont les **courbes de niveau**, les lignes de champ les **lignes de plus grande pente**. C'est pourquoi elles se coupent à angle droit.
 
 - Une **surface équipotentielle** correspond à l'ensemble des points de l'espace où le potentiel électrique est le même.
 - Une **ligne de champ** est perpendiculaire en un point à une surface équipotentielle.
@@ -550,6 +677,13 @@ $$\vec{E} = \sum_{i} \vec{E_{i}} = \vec{E_{1}} + \vec{E_{2}} + \dots$$
 > **En clair.** Reprends l'analogie de la randonnée (A.9) : les équipotentielles sont les **courbes de niveau** de la carte, les lignes de champ sont les **lignes de plus grande pente**. Elles se coupent à angle droit, comme sur toutes les cartes IGN.
 > Déplacer une charge **le long** d'une équipotentielle ne coûte aucune énergie (on marche à plat). La déplacer **le long** d'une ligne de champ, c'est monter ou descendre.
 > Autour d'une charge ponctuelle, les équipotentielles sont des **sphères** centrées sur la charge ; entre deux plaques, ce sont des **plans parallèles aux plaques**.
+
+> **À retenir pour les exercices**
+>
+> - Une **surface équipotentielle** réunit tous les points de même potentiel $V$ ; $\vec{E}$ lui est **perpendiculaire**.
+> - Déplacer une charge **le long** d'une équipotentielle ne coûte aucun travail ($\Delta V = 0$, donc $W = 0$).
+> - Autour d'une charge ponctuelle, les équipotentielles sont des **sphères** ; entre deux plaques, des **plans parallèles aux plaques**.
+> - Équipotentielles **serrées** → pente forte → champ **intense** : c'est tout l'effet de pointe du paratonnerre.
 
 ---
 
@@ -881,6 +1015,8 @@ L'électrostatique n'est pas qu'une curiosité de laboratoire : c'est une techno
 
 ## E.1. L'imprimante à jet d'encre
 
+> **TL;DR.** Comment une imprimante place 10 000 gouttes par seconde exactement où il faut : le champ entre les plaques ne change pas, c'est la **charge donnée à chaque goutte** qui décide de sa déviation.
+
 Le canon à encre produit environ 10 000 gouttelettes par seconde. Chacune traverse une **électrode de charge** qui lui donne, à la demande de l'ordinateur, une charge $q$ plus ou moins grande. Les gouttes passent ensuite entre deux plaques de déviation, où règne un champ $\vec{E}$ constant.
 
 ![**Animation.** Chaque gouttelette reçoit une charge différente et atterrit donc à une hauteur différente sur le papier.](figures/anim-08-jet-encre.svg)
@@ -889,7 +1025,15 @@ Comme $\vec{F} = q\,\vec{E}$ et que $\vec{E}$ ne change pas, **c'est la charge q
 
 C'est le même dispositif que l'expérience de Thomson, à ceci près qu'on y fait varier la charge au lieu de la mesurer.
 
+> **À retenir pour les exercices**
+>
+> - $\vec{F} = q\,\vec{E}$ à champ constant : la déviation est **proportionnelle à la charge**.
+> - Une goutte **non chargée** n'est pas déviée du tout : c'est ainsi qu'on fait les espaces entre les mots.
+> - C'est le dispositif de l'expérience de Thomson, utilisé à l'envers : ici on impose la charge, là-bas on la mesure.
+
 ## E.2. La photocopieuse et l'imprimante laser
+
+> **TL;DR.** Les quatre étapes, toutes électrostatiques, d'une photocopieuse ou d'une imprimante laser : charger le tambour, l'éclairer, le poudrer, transférer sur le papier.
 
 Quatre étapes, toutes électrostatiques :
 
@@ -898,7 +1042,15 @@ Quatre étapes, toutes électrostatiques :
 3. On saupoudre une poudre d'encre (le *toner*) chargée **négativement** : elle est attirée uniquement par les zones restées positives.
 4. Une feuille passe sur le tambour, attirée par un fil de transfert positif placé dessous ; la poudre saute sur le papier, que des rouleaux chauffants viennent fixer définitivement.
 
+> **À retenir pour les exercices**
+>
+> - La **lumière fait fuir les charges** : les zones éclairées se déchargent, et l'image portée par le tambour est une image **faite de charges**.
+> - Le toner **négatif** ne se colle que sur les zones restées **positives** : attraction de signes opposés.
+> - Le papier, neutre, est attiré par influence (A.3) grâce à un fil de transfert placé dessous.
+
 ## E.3. La peinture et les pesticides électrostatiques
+
+> **TL;DR.** Pourquoi une peinture chargée s'étale toute seule de façon régulière et vient se coller **y compris sur les faces cachées** de l'objet.
 
 La buse charge positivement les gouttelettes de peinture. Deux effets se combinent :
 
@@ -907,11 +1059,26 @@ La buse charge positivement les gouttelettes de peinture. Deux effets se combine
 
 Résultat : presque pas de peinture perdue, et une couche uniforme. On traite de la même façon les cultures — les parasites vivent sous les feuilles, là où un pulvérisateur ordinaire n'atteint rien.
 
+> **À retenir pour les exercices**
+>
+> - Les gouttes, toutes de **même signe**, se repoussent : le nuage s'uniformise sans aucun réglage.
+> - L'objet relié à la terre prend une charge **opposée par influence** ; les gouttes suivent les lignes de champ, qui **contournent** l'objet.
+> - Même principe pour les pesticides : les parasites vivent sous les feuilles, là où un jet ordinaire n'arrive pas.
+
 ## E.4. Le dépoussiéreur électrostatique
+
+> **TL;DR.** Comment on retient plus de 99 % des suies d'une cheminée d'usine avec des fils à haute tension et des plaques collectrices.
 
 Dans les cheminées d'usine, les fumées passent près de fils portés à très haute tension négative. Les particules de suie se chargent, puis sont attirées par des plaques collectrices positives, d'où on les décolle périodiquement. Un dépoussiéreur bien réglé retient plus de 99 % des particules.
 
+> **À retenir pour les exercices**
+>
+> - On **charge** d'abord les particules, puis on les attire avec une électrode de signe **opposé** : c'est encore $\vec{F} = q\,\vec{E}$.
+> - Le champ doit être très intense près des fils pour ioniser l'air : on y retrouve le seuil de claquage.
+
 ## E.5. L'éclair et le paratonnerre
+
+> **TL;DR.** Pourquoi l'air, isolant, finit par devenir **conducteur** sous un nuage d'orage, et pourquoi la décharge choisit toujours la pointe la plus haute.
 
 Dans un nuage d'orage, les frottements entre cristaux de glace séparent les charges : le bas du nuage devient très négatif. Le champ entre le nuage et le sol grandit ; dès qu'il dépasse $3 \times 10^{6}\ \mathrm{V\,m^{-1}}$, l'air **devient conducteur** et la décharge se produit — c'est l'éclair.
 
@@ -919,11 +1086,19 @@ Le paratonnerre exploite un effet de pointe : près d'une pointe, les équipoten
 
 > **Pourquoi est-il dangereux de rester debout au milieu d'un champ pendant un orage ?** Parce que les équipotentielles, horizontales loin de tout obstacle, se déforment autour du point le plus haut — et c'est toi. Le champ est alors maximal à ton sommet : tu joues le rôle du paratonnerre.
 
+> **À retenir pour les exercices**
+>
+> - Claquage de l'air sec : $E \approx 3 \times 10^{6}\ \mathrm{V\,m^{-1}}$. En dessous, rien ne se passe ; au-dessus, l'étincelle jaillit.
+> - **Effet de pointe** : près d'une pointe les équipotentielles sont très serrées, donc $E = -\Delta V/\Delta r$ est énorme — la décharge part de là.
+> - Conséquence pour toi : dans un terrain découvert, la pointe la plus haute, c'est ta tête.
+
 ---
 
 # Partie F — Méthode, erreurs et auto-test
 
 ## F.1. Méthode en 5 étapes pour n'importe quel exercice
+
+> **TL;DR.** La marche à suivre pour **n'importe quel** exercice du chapitre, du schéma jusqu'à la vérification de l'ordre de grandeur. À appliquer aux parties C et G.
 
 1. **Faire un schéma.** Placer les charges, leurs signes, le point où l'on cherche quelque chose. Un exercice d'électrostatique sans schéma est un exercice perdu.
 2. **Repérer la situation.** Il n'y en a que trois dans ce chapitre :
@@ -934,7 +1109,15 @@ Le paratonnerre exploite un effet de pointe : près d'une pointe, les équipoten
 4. **Convertir en unités SI** : cm → m, mm → m, µC → C, g → kg. Puis calculer.
 5. **Vérifier.** L'ordre de grandeur est-il plausible ? L'unité est-elle la bonne ? Le sens de la flèche est-il cohérent avec les signes des charges ?
 
+> **À retenir pour les exercices**
+>
+> - Il n'existe que **trois situations** : une charge ponctuelle ($E = k\lvert Q \rvert/r^{2}$), deux plaques ($E = U/d$), plusieurs charges (somme vectorielle).
+> - Toujours dans cet ordre : schéma → formule **en lettres** → conversion en SI → valeurs → vérification. Le barème paie la formule en lettres.
+> - Vérifier trois choses à la fin : l'**unité**, l'**ordre de grandeur**, et le **sens** de la flèche par rapport aux signes des charges.
+
 ## F.2. Les erreurs classiques
+
+> **TL;DR.** Le tableau des neuf erreurs qui coûtent le plus de points, avec la correction de chacune. C'est la page à relire juste avant un contrôle.
 
 | Erreur fréquente | Ce qu'il faut faire |
 |---|---|
@@ -947,6 +1130,13 @@ Le paratonnerre exploite un effet de pointe : près d'une pointe, les équipoten
 | Dire « l'électron va dans le sens du champ » | Il est négatif : il **remonte** les lignes de champ |
 | Croiser deux lignes de champ sur un schéma | Elles ne se croisent **jamais** |
 | Confondre $U$ (une différence) et $V$ (un point) | $U = V_A - V_B$ |
+
+> **À retenir pour les exercices**
+>
+> - Les deux erreurs de calcul : oublier de convertir les cm en m, et oublier que le carré porte **aussi** sur la puissance de 10.
+> - Les deux erreurs de vecteurs : additionner des **normes** au lieu des coordonnées, et dessiner $\vec{F}$ dans le sens de $\vec{E}$ pour une charge **négative**.
+> - Les deux erreurs de vocabulaire : confondre $\vec{F}$ (ce que subit la charge posée) et $\vec{E}$ (ce qui existe déjà), confondre $U$ (une différence) et $V$ (attaché à un point).
+> - Et jamais de norme négative, jamais deux lignes de champ qui se croisent, jamais un électron « dans le sens du champ ».
 
 ## F.3. Auto-test
 
@@ -979,7 +1169,7 @@ Le paratonnerre exploite un effet de pointe : près d'une pointe, les équipoten
 
 # Partie G — Entraînement supplémentaire
 
-> **Origine de ces exercices.** Les énoncés qui suivent sont **adaptés en français** du chapitre 21 (*Electric Fields*) de *Advanced Physics for You*, de K. Johnson, S. Hewett, S. Holt et J. Miller (Oxford University Press, 2<sup>e</sup> édition, 2015), ainsi que des questions d'examen britanniques (OCR, AQA, Edexcel) qu'il reproduit. Les situations et les valeurs numériques sont conservées, les textes ont été réécrits et les corrigés entièrement rédigés ici. À utiliser pour s'entraîner, pas pour diffuser.
+> **Origine de ces exercices.** Les énoncés qui suivent sont **adaptés en français** du chapitre 21 (*Electric Fields*) de *Advanced Physics for You*, de K. Johnson, S. Hewett, S. Holt et J. Miller (Oxford University Press, 2<sup>e</sup> édition, 2015), ainsi que des questions d'examen britanniques (OCR, AQA, Edexcel) qu'il reproduit. Les situations et les valeurs numériques sont conservées, les textes ont été réécrits et les corrigés entièrement rédigés ici. Pour réviser ; pour les énoncés d'origine, les figures et le reste du chapitre, réfère-toi au manuel.
 >
 > **Données utiles :** $k = \dfrac{1}{4\pi\varepsilon_{0}} = 9{,}0 \times 10^{9}\ \mathrm{N\,m^{2}\,C^{-2}}$ ; $\varepsilon_{0} = 8{,}85 \times 10^{-12}\ \mathrm{F\,m^{-1}}$ ; $e = 1{,}6 \times 10^{-19}\ \mathrm{C}$ ; $m_{e} = 9{,}1 \times 10^{-31}\ \mathrm{kg}$ ; $g = 9{,}81\ \mathrm{N\,kg^{-1}}$.
 
@@ -1137,6 +1327,8 @@ a) Calculer le champ entre les plaques. b) Calculer la force de déviation sur c
 
 ## Formulaire — récapitulatif
 
+> **TL;DR.** Toutes les relations du chapitre sur une seule page, avec leurs unités. C'est la page à avoir sous les yeux pendant les exercices.
+
 | Grandeur | Relation | Unité |
 |---|---|---|
 | Force électrostatique | $\vec{F_{el}} = q\,\vec{E} = k\,\dfrac{Q q}{r^{2}}\,\vec{u}$ | N |
@@ -1152,3 +1344,10 @@ a) Calculer le champ entre les plaques. b) Calculer la force de déviation sur c
 | Champ et potentiel | $E = -\dfrac{\Delta V}{\Delta r}$ | $\mathrm{V\,m^{-1}}$ |
 | Norme d'un vecteur | $\lVert \vec{E} \rVert = \sqrt{E_x^{2} + E_y^{2}}$ | — |
 | Poids (rappel) | $\vec{P} = m\,\vec{g}$, $g = 9{,}81\ \mathrm{N\,kg^{-1}}$ | N |
+
+> **Comment choisir sa formule**
+>
+> - On connaît $\vec{E}$ → $\vec{F} = q\,\vec{E}$. On connaît la source $Q$ et la distance $r$ → Coulomb, ou $E = k\lvert Q \rvert/r^{2}$.
+> - Deux plaques → $E = U/d$. Une énergie, un travail → $W = q\,\Delta V$. Un nombre d'électrons → $q = n\,e$.
+> - Une gouttelette **immobile** → on écrit l'équilibre $qE = mg$ avec $E = U/d$, d'où $q = \dfrac{m g d}{U}$.
+> - Plusieurs charges → $\vec{E} = \sum_i \vec{E_i}$ pour les champs (des vecteurs), et une simple somme de nombres pour les potentiels $V$.

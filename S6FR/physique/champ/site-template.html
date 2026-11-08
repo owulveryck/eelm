@@ -78,6 +78,14 @@ blockquote.enclair{background:#eef5ff;border-left-color:var(--blue)}
 blockquote.retenir{background:#fff6e5;border-left-color:var(--orange)}
 blockquote.exemple{background:#eefaf3;border-left-color:var(--green)}
 blockquote.note{background:#f7f3ea;border-left-color:var(--soft)}
+blockquote.tldr{margin:0 0 22px;background:#eef2f6;border-left-color:#5c7d99;color:#30414f}
+blockquote.tldr strong:first-child{display:block;margin-bottom:4px;color:#5c7d99;
+  font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+blockquote.pourexos{margin:30px 0 4px;background:#fff6e5;border:2px solid var(--orange);
+  border-left-width:5px;border-radius:3px;padding:16px 20px}
+blockquote.pourexos strong:first-child{display:block;margin-bottom:6px;color:#c25c00;
+  font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+blockquote.pourexos ul{margin:8px 0 0;padding-left:22px} blockquote.pourexos li{margin:5px 0}
 /* figures */
 figure{margin:24px 0;text-align:center}
 figure svg,.figsvg{max-width:100%;height:auto;display:block;margin:0 auto}
@@ -117,8 +125,12 @@ tbody tr:nth-child(even){background:#fcfaf6}
   h2{font-size:23px}
   body{font-size:16px}
 }
+#legal{margin:34px 0 0;padding-top:14px;border-top:1px solid #e6ded0;font-size:12px;
+  color:#8a8077;line-height:1.7}
+#legal a{color:#8a8077}
 @media print{
   #side,#top,#foot,.solbtn{display:none}
+  #legal{display:block}
   .pane{display:block!important;page-break-after:always}
   main{box-shadow:none}
 }
@@ -144,6 +156,11 @@ tbody tr:nth-child(even){background:#fcfaf6}
         <button id="next">Suivant →</button>
         <span id="tab"></span>
       </div>
+      <p id="legal">Cours de l'École européenne Jacques Delors, remis au propre et augmenté.
+      Explications ajoutées et figures&nbsp;: <a rel="license"
+      href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr">CC BY-NC-SA 4.0</a> &middot;
+      scripts&nbsp;: MIT &middot; source&nbsp;:
+      <a href="https://github.com/owulveryck/eelm">github.com/owulveryck/eelm</a></p>
     </div>
   </main>
 </div>

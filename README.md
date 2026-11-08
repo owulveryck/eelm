@@ -53,6 +53,13 @@ dans n'importe quel éditeur de texte, et restent lisibles en mode sombre.
   des exercices. Aucun extrait du livre, aucune de ses illustrations et aucun PDF ne sont
   republiés ici ; `.gitignore` exclut d'ailleurs tout fichier PDF du dépôt.
 
-Aucune licence n'est posée pour l'instant : par défaut, tous droits réservés. Pour ouvrir le
-contenu, le couple habituel serait CC BY-NC-SA 4.0 pour les textes et les figures, et MIT pour
-les scripts.
+## Licence
+
+- Explications ajoutées, corrigés rédigés, figures SVG, pages d'index :
+  [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr)
+- Scripts (`build-site.py`, `build-index.py`, `site-template.html`, `assets/`) : MIT
+- Le polycopié transcrit et les exercices adaptés du manuel restent la propriété de leurs
+  auteurs et ne sont pas couverts par ces licences.
+
+Le détail est dans [LICENSE](LICENSE). Toute demande de retrait de la part d'un ayant droit
+sera honorée.
