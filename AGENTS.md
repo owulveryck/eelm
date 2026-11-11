@@ -43,6 +43,7 @@ Trois règles qui expliquent tous les choix techniques :
 │   ├── scenes.py                 un dessin animé par phrase
 │   ├── dessins.py                les dessins de base réutilisés
 │   └── build/                    travail intermédiaire — non versionné
+├── video-test/                   une seconde vidéo : la révision avant le test (cf. §8)
 ├── cours-<chapitre>.mp4          la vidéo produite — non versionnée (hébergée sur YouTube)
 ├── index.html, figures.html      générés par build-index.py
 └── assets/site.css               (à la racine du dépôt) CSS des pages d'index
@@ -307,6 +308,27 @@ montage build/apercu/*.png -tile 3x -geometry 640x+5+5 -background '#ddd' build/
 
 Les collisions de texte, les flèches hors cadre et les étiquettes superposées ne se voient que
 comme ça. C'est l'étape la plus longue, et la seule qui fasse la différence.
+
+### Une seconde vidéo pour le même chapitre
+
+Un chapitre peut avoir plusieurs vidéos : un dossier par vidéo, à côté de `video/`
+(ici `video-test/`, la révision d'avant test). Le moteur prend le dossier en argument, il n'y a
+donc rien d'autre à changer que les trois fichiers du dossier :
+
+- `script.py` déclare son propre `SORTIE` (le `.mp4` produit à côté du chapitre) ;
+- `scenes.py` fixe `canvas.CHAPITRE = "…"` : c'est le libellé en haut à gauche de chaque image ;
+- `build-site.py` reçoit un second identifiant YouTube (`VIDEO_YT_TEST`) et une seconde page.
+
+Deux choses apprises en fabriquant celle-ci :
+
+- **Les cartes de lignes de champ ne se dessinent pas à la main.** `video-test/dessins.py` intègre
+  numériquement les lignes (`ligne()`, méthode du point milieu, puis `carte()` pour deux charges) :
+  l'allure est exacte, le point où le champ s'annule apparaît tout seul entre deux charges de même
+  signe, et changer les signes suffit à produire l'autre cas. Les tracés sont **mis en cache** :
+  `montage.py` redemande la même carte 36 fois par plan pour savoir s'il est animé, et c'est
+  l'intégration qui coûte, pas le dessin.
+- **Une étiquette posée sur un dessin a besoin d'un fond** (`chip()`), sinon elle se perd dans les
+  lignes. Cela ne se voit qu'en regardant les PNG, jamais dans le source.
 
 ### Publier
 

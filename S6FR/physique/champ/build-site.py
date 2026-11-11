@@ -16,6 +16,8 @@ KATEX = bool(shutil.which("node")) and os.path.exists(KCSS) and os.path.exists(K
 # identifiant YouTube de la vidéo du chapitre (vidéo non répertoriée) ; "" = pas de page vidéo.
 # C'est la seule ressource externe de la page : check-site.py la tolère explicitement.
 VIDEO_YT = "YCgKGIHUVU0"
+# la vidéo de révision « spécial test » (sources dans video-test/) ; "" = pas de page.
+VIDEO_YT_TEST = "nfvQWSusSto"
 
 # ---------------------------------------------------------------- markdown -> html
 def pandoc(md):
@@ -237,6 +239,39 @@ elle donne le fil, les pages donnent le détail et les exercices.
 >   refaire seul suffit à traiter la plupart des exercices.
 > - La méthode en cinq étapes présentée à la fin est la même que sur la page **Méthode**.
 """ % VIDEO_YT))
+
+# ---- la vidéo de révision « spécial test » (sources dans video-test/)
+if VIDEO_YT_TEST:
+    add("video-test", "Pour commencer", "La vidéo de révision", H("""## La vidéo de révision — spécial test
+
+> **TL;DR.** Vingt minutes qui reprennent **uniquement ce qui tombe au test** : la force de Coulomb,
+> le champ uniforme dans un condensateur, les lignes de champ (dans un condensateur, puis entre deux
+> charges), l'expérience de Millikan, et la méthode d'analyse des données qui montre qu'une grandeur
+> est **quantifiée**. Fil directeur : la goutte d'huile immobile entre deux plaques.
+
+<div class="ytbox"><iframe src="https://www.youtube-nocookie.com/embed/%s" title="Champ électrique — révision spécial test" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+
+Les six points du programme du test, dans l'ordre de la vidéo :
+
+1. la **loi de Coulomb**, et pourquoi le carré de la distance permet de répondre par un rapport ;
+2. le **champ uniforme** entre deux plaques, $E = U/d$ ;
+3. les **lignes de champ dans un condensateur**, et ce que veut dire « loin des bords » ;
+4. l'**allure des lignes de champ** entre deux charges de même valeur, de signes opposés puis de
+   même signe (avec le point où le champ s'annule) ;
+5. l'**expérience de Millikan** : le dispositif, le rôle de chaque pièce, et la démonstration de
+   $q = \dfrac{m g d}{U}$ ;
+6. l'**analyse des données** : calculer les charges, repérer le plus petit palier, diviser toutes
+   les charges par lui, montrer que les rapports sont des entiers — et, plus généralement,
+   reconnaître si une grandeur varie comme $n$, $n^{2}$, $1/n$ ou $1/n^{2}$.
+
+> **À retenir pour les exercices**
+>
+> - Une grandeur est **quantifiée** si elle ne prend que des valeurs discrètes, de la forme
+>   $x = a \cdot f(n)$ avec $n$ entier. Pour la charge, $f(n) = n$, donc $q = n\,e$.
+> - Pour trouver $f$ : diviser chaque mesure par $f(n)$ et chercher **la colonne constante**.
+> - Le détail des calculs de cette vidéo est dans la **partie D** (sujet de Bac et corrigé), et les
+>   schémas de lignes de champ dans la **galerie des figures**.
+""" % VIDEO_YT_TEST))
 
 # ---- parties de cours (A, B, E, F) : une page par ## (ou par ### s'il n'y a qu'un ##)
 def add_partie(key, group, skip=(), kind="cours"):
